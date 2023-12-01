@@ -8,10 +8,12 @@ public class PlayerManager : MonoBehaviour
 {
     private PlayerInputManager inputManager;
     [SerializeField] LayerMask[] cameraLayers;
+    [SerializeField] Color[] playerColor;
 
 
     private void Awake() {
         inputManager = GetComponent<PlayerInputManager>();
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void OnEnable() {
@@ -28,12 +30,16 @@ public class PlayerManager : MonoBehaviour
         playerInput.camera.cullingMask |= (1 << cameraLayer);
 
         CharacterController character = playerInput.GetComponent<CharacterController>();
+        character.GetComponentInChildren<MeshRenderer>().material.color = playerColor[playerInput.playerIndex];
 
         CinemachineVirtualCamera virtualCamera = character.virtualCamera;
         virtualCamera.gameObject.layer = cameraLayer;
 
         CinemachineInputProvider inputProvider = virtualCamera.GetComponent<CinemachineInputProvider>();
         inputProvider.PlayerIndex = playerInput.playerIndex;
+
+        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(playerInput.gameObject);
     }
     public void OnPlayerLeft(PlayerInput playerInput) {
 

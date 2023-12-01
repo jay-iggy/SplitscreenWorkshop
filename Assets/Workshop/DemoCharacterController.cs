@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterController : MonoBehaviour
+public class DemoCharacterController : MonoBehaviour
 {
+    public CinemachineVirtualCamera virtualCamera;
+
     PlayerInput playerInput;
     Rigidbody rb;
     [SerializeField] float speed = 10;
-
-    public CinemachineVirtualCamera virtualCamera;
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
@@ -32,9 +32,8 @@ public class CharacterController : MonoBehaviour
 
     private void Update() {
         transform.localEulerAngles = playerInput.camera.transform.localEulerAngles.y * Vector3.up;
+
         rb.velocity = (transform.right * input.x + transform.forward * input.y) * speed;
-
     }
-
 
 }
