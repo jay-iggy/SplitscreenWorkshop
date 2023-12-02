@@ -30,6 +30,10 @@ Steps:
 	- Create virtual camera as a child
 		- If you want a controllable camera, add a CinemachineInputProvider component
 			- Set XY Axis to the action that controls the camera
+		- My cinemachine settings for a third person controller:
+			Body: Framing Transposer
+				- Make sure to set follow target as the player (i forgot this in the recording)
+			Aim: POV
 
 4. Create PlayerManager from empty GameObject
 	- Add Player Input Manager component
