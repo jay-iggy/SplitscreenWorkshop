@@ -38,7 +38,6 @@ public class PlayerManager : MonoBehaviour
         CinemachineInputProvider inputProvider = virtualCamera.GetComponent<CinemachineInputProvider>();
         inputProvider.PlayerIndex = playerInput.playerIndex;
 
-        DontDestroyOnLoad(this.gameObject);
         DontDestroyOnLoad(playerInput.gameObject);
     }
     public void OnPlayerLeft(PlayerInput playerInput) {
